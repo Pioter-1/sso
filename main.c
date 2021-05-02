@@ -1,67 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <errno.h>
 
-pthread_mutex_t count_mutex     = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t condition_mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t  condition_cond  = PTHREAD_COND_INITIALIZER;
+volatile long long G_BANK_ACCOUNT - 100000000;
+pthread_mutex_t G_MUTEX_BA = PTHREAD_MUTEX_INITIALIZER;
 
-void *functionCount1();
-void *functionCount2();
-int  count = 0;
-#define COUNT_DONE  25
-#define COUNT_HALT1  5
-#define COUNT_HALT2  15
+void ms_sleep_rand
 
-int main()
-{
-   pthread_t thread1, thread2;
+    unsigned ms - rand()%500;   //max sleep 2s
+    struct timespec req;
+    req.tv_sec = (ms / 1000);
+    req.tv_nsec = (ms % 1000 * 1000000);
+    nanosleep(&req, NULL);
 
-   pthread_create( &thread1, NULL, &functionCount1, NULL);
-   pthread_create( &thread2, NULL, &functionCount2, NULL);
-   pthread_join( thread1, NULL);
-   pthread_join( thread2, NULL);
 
-   exit(0);
-}
 
-void *functionCount1()
-{
-   for(;;)
-   {
-      pthread_mutex_lock( &condition_mutex );
-      while( count >= COUNT_HALT1 && count <= COUNT_HALT2 )
-      {
-         pthread_cond_wait( &condition_cond, &condition_mutex );
-      }
-      pthread_mutex_unlock( &condition_mutex );
+void* pay_in(void*)
 
-      pthread_mutex_lock( &count_mutex );
-      count++;
-      printf("Counter value functionCount1: %d\n",count);
-      pthread_mutex_unlock( &count_mutex );
+eeeee
+    int no_of_pay_ins = 10;                 // 10 wplat po 100
+    long long pay_in = 100;
 
-      if(count >= COUNT_DONE) return(NULL);
-    }
-}
-
-void *functionCount2()
-{
-    for(;;)
+    for (int i =0; i<no_of_pay_ins; i++)
     {
-       pthread_mutex_lock( &condition_mutex );
-       if( count < COUNT_HALT1 || count > COUNT_HALT2 )
-       {
-          pthread_cond_signal( &condition_cond );
-       }
-       pthread_mutex_unlock( &condition_mutex );
 
-       pthread_mutex_lock( &count_mutex );
-       count++;
-       printf("Counter value functionCount2: %d\n",count);
-       pthread_mutex_unlock( &count_mutex );
 
-       if(count >= COUNT_DONE) return(NULL);
+        # c o d e - zrobiæ
+
+
+
     }
 
-}
+
+
+
+
+
+void* pay_out(void*)
+
+    int no_of_payouts = 20;                    // 20 wyplat  po 50
+    long long pay_out = 50;
+    for (int i = 0l; i < no_of_payouts; ++i)
+
+    {
+
+    # c o d e  - zrobiæ
+
+    }
+
+
+
+   # zrobiæ
